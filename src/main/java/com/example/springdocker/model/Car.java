@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Car {
+    String id;
     String regNr;
     String model;
     int horsePower;
+    double price;
     boolean convertible; // cab
 }

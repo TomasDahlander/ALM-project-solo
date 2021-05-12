@@ -17,9 +17,14 @@ public class CarController {
         return service.getCars();
     }
 
+    @PostMapping("/car")
+    public Car saveNewCar(@RequestBody Car car) {
+        return service.saveNewCar(car);
+    }
+
     @PostMapping("/cars")
-    public void saveNewCar(@RequestBody Car car) {
-        service.saveNewCar(car);
+    public List<Car> saveNewCars(@RequestBody List<Car> cars){
+        return service.saveNewCars(cars);
     }
 
     @GetMapping("/cars/cabs")
