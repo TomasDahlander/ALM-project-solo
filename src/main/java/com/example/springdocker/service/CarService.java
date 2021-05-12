@@ -17,8 +17,12 @@ public class CarService {
         return repository.findAll();
     }
 
-    public void saveNewCar(Car car) {
-        repository.save(car);
+    public Car saveNewCar(Car car) {
+        return repository.save(car);
+    }
+
+    public List<Car> saveNewCars(List<Car> cars) {
+        return repository.saveAll(cars);
     }
 
     public List<String> getConvertibleCars() {
