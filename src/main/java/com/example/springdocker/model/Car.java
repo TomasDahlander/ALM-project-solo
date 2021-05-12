@@ -11,5 +11,6 @@ public class Car {
     String regNr;
     String model;
     int horsePower;
+    double price;
     boolean convertible; // cab
 }
