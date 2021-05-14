@@ -1,5 +1,6 @@
-package com.example.springdocker;
+package com.example.springdocker.maths;
 
+import com.example.springdocker.maths.Fibonacci;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;

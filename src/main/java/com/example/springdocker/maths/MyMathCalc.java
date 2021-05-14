@@ -1,4 +1,4 @@
-package com.example.springdocker;
+package com.example.springdocker.maths;
 
 /**
  * Created by Tomas Dahlander <br>
@@ -17,6 +17,7 @@ public class MyMathCalc {
     }
 
     public double divide(double a, double b){
+        if(b == 0) throw new ArithmeticException("Cant divide by zero");
         return a/b;
     }
 

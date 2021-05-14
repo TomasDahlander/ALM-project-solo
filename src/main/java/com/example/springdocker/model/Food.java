@@ -12,4 +12,10 @@ public class Food {
     String name;
     boolean delicious;
     boolean canICookIt;
+
+    public Food(String name, boolean delicious, boolean canICookIt) {
+        this.name = name;
+        this.delicious = delicious;
+        this.canICookIt = canICookIt;
+    }
 }

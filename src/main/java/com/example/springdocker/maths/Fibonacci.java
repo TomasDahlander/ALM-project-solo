@@ -1,4 +1,4 @@
-package com.example.springdocker;
+package com.example.springdocker.maths;
 
 /**
  * Created by Tomas Dahlander <br>
