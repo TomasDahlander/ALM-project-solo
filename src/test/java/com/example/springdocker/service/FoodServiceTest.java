@@ -48,7 +48,6 @@ class FoodServiceTest {
         assertEquals("Apple",foods.get(0).getName());
         assertEquals(1,foods.size());
         verify(mockRepository).findAll();
-
     }
 
     @Test
@@ -65,21 +64,19 @@ class FoodServiceTest {
     }
 
     @Test
-    @Disabled
     void getCookableFoodsTest() {
-        Food mockFood1 = new Food("Apple",true,true);
-        Food mockFood2 = new Food("Pear",false,false);
+        List<Food> list = Arrays.asList(
+                new Food("Mango",true,true),
+                new Food("Venison",true,true)
+        );
 
-        List<Food> foods = Arrays.asList(mockFood1, mockFood2);
+        List<String> expected = Arrays.asList("Mango","Venison");
 
-        when(mockRepository.saveAll(any())).thenReturn(foods);
+        when(mockRepository.findFoodByCanICookIt(anyBoolean())).thenReturn(list);
 
-        when(mockRepository.findFoodByCanICookIt(true)).thenReturn(Arrays.asList(mockFood1));
+        List<String> actual = foodService.getCookableFoods();
 
-        List<Food> foodsFromDB = foodService.saveNewFoods(foods);
-
-
-        verify(mockRepository).saveAll(any());
+        assertEquals(expected, actual);
 
     }
 }
