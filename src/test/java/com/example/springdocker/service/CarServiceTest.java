@@ -1,6 +1,7 @@
 package com.example.springdocker.service;
 
 import com.example.springdocker.model.Car;
+import com.example.springdocker.model.Food;
 import com.example.springdocker.repository.CarRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,10 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by Tomas Dahlander <br>
@@ -37,7 +36,7 @@ class CarServiceTest {
     }
 
     @Test
-    public void getCars() {
+    public void getCarsTest() {
         List<Car> mockCarList = Arrays.asList(
                 new Car("1","ABC-123","Saab 93",150,150000,false),
                 new Car("2","DEF-456","Porsche 911",250,300000,true)
@@ -55,7 +54,7 @@ class CarServiceTest {
     }
 
     @Test
-    public void saveNewCar() {
+    public void saveNewCarTest() {
         Car mockCar = new Car("ABC-123","Saab 93",150,150000,false);
 
         when(mockRepository.save(any())).thenReturn(mockCar);
@@ -66,7 +65,7 @@ class CarServiceTest {
     }
 
     @Test
-    public void saveNewCars() {
+    public void saveNewCarsTest() {
         List<Car> mockCarList = Arrays.asList(
                 new Car("1","ABC-123","Saab 93",150,150000,false),
                 new Car("2","DEF-456","Porsche 911",250,300000,true)
@@ -80,10 +79,28 @@ class CarServiceTest {
     }
 
     @Test
-    public void getConvertibleCars() {
+    public void getConvertibleCarsTest() {
+        List<Car> expected = Arrays.asList(new Car("2","DEF-456","Porsche 911",250,300000,true));
+
+        when(mockRepository.findCarByConvertible(anyBoolean())).thenReturn(expected);
+        List<String> actual = carService.getConvertibleCars();
+
+        assertEquals(expected.get(0).getModel(),actual.get(0));
     }
 
     @Test
-    public void getCarsWithHigherHpThen() {
+    public void getCarsWithHigherHpThen200Test() {
+        List<Car> mockCarList = Arrays.asList(
+                new Car("1","ABC-123","Saab 93",150,150000,false),
+                new Car("2","DEF-456","Porsche 911",250,300000,true)
+        );
+
+        List<Car> expected = Arrays.asList(new Car("2","DEF-456","Porsche 911",250,300000,true));
+
+        when(mockRepository.findAll()).thenReturn(mockCarList);
+
+        List<Car> actual = carService.getCarsWithHigherHpThen(200);
+
+        assertEquals(expected,actual);
     }
 }

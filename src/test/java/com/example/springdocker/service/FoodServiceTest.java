@@ -36,7 +36,7 @@ class FoodServiceTest {
     }
 
     @Test
-    void getFoodsTest() {
+    public void getFoodsTest() {
 
         Food mockFood = new Food("Apple",true,true);
 
@@ -51,7 +51,7 @@ class FoodServiceTest {
     }
 
     @Test
-    void saveNewFoodTest() {
+    public void saveNewFoodTest() {
         Food mockFood = new Food("Apple",true,true);
 
         when(mockRepository.save(any())).thenReturn(mockFood);
@@ -64,7 +64,23 @@ class FoodServiceTest {
     }
 
     @Test
-    void getCookableFoodsTest() {
+    public void saveNewFoodsTest(){
+        List<Food> expected = Arrays.asList(
+                new Food("Apple", true,true),
+                new Food("Pear", false,false),
+                new Food("Mango", true,true)
+        );
+
+        when(mockRepository.saveAll(anyList())).thenReturn(expected);
+
+        List<Food> actual = foodService.saveNewFoods(expected);
+
+        assertEquals(expected,actual);
+        verify(mockRepository).saveAll(anyList());
+    }
+
+    @Test
+    public void getCookableFoodsTest() {
         List<Food> list = Arrays.asList(
                 new Food("Mango",true,true),
                 new Food("Venison",true,true)

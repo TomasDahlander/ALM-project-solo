@@ -21,6 +21,10 @@ public class FoodService {
         return repository.save(food);
     }
 
+    public List<Food> saveNewFoods(List<Food> foods) {
+        return repository.saveAll(foods);
+    }
+
     public List<String> getCookableFoods() {
         // hämtar alla Foods som vi kan laga
         List<Food> cookableFoods = repository.findFoodByCanICookIt(true);
@@ -31,7 +35,5 @@ public class FoodService {
                 .collect(Collectors.toList());
     }
 
-    public List<Food> saveNewFoods(List<Food> foods) {
-        return repository.saveAll(foods);
-    }
+
 }
