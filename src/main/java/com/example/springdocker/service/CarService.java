@@ -3,8 +3,11 @@ package com.example.springdocker.service;
 import com.example.springdocker.model.Car;
 import com.example.springdocker.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,11 +21,23 @@ public class CarService {
     }
 
     public Car saveNewCar(Car car) {
+        boolean carAlreadyExists = checkCarIfExists(car.getRegNr());
+        if(carAlreadyExists) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Car already exist in database.");
         return repository.save(car);
     }
 
+    private boolean checkCarIfExists(String regNr){
+        if(regNr.length() != 7) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Reg nr must be in format XXX-XXX");
+        Car existingCar = repository.findCarByRegNr(regNr);
+        return existingCar != null;
+    }
+
     public List<Car> saveNewCars(List<Car> cars) {
-        return repository.saveAll(cars);
+        List<Car> carsFromDB = new ArrayList<>();
+        for(Car car : cars){
+            carsFromDB.add(saveNewCar(car));
+        }
+        return carsFromDB;
     }
 
     public List<String> getConvertibleCars() {

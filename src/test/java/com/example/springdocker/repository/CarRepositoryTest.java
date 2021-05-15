@@ -24,7 +24,7 @@ class CarRepositoryTest {
     CarRepository carRepository;
 
     @Test
-    void findCarByConvertible() {
+    public void findCarByConvertibleTest() {
 
         List<Car> list = Arrays.asList(
                 new Car("1","ABC-123","Saab 93",150,150000,false),
@@ -38,5 +38,18 @@ class CarRepositoryTest {
         List<Car> actual = carRepository.findCarByConvertible(true);
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void findCarByRegNrTest() {
+        Car mockCar = new Car("1","ABC-123","Saab 93",150,150000,false);
+
+        carRepository.save(mockCar);
+
+        Car carFromDB = carRepository.findCarByRegNr("ABC-123");
+        assertEquals(mockCar,carFromDB);
+
+        Car carNotExisting = carRepository.findCarByRegNr("DEF-123");
+        assertNull(carNotExisting);
     }
 }
