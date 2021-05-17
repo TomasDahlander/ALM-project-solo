@@ -71,11 +71,15 @@ class CarServiceTest {
                 new Car("2","DEF-456","Porsche 911",250,300000,true)
         );
 
-        when(mockRepository.saveAll(anyList())).thenReturn(mockCarList);
+        when(mockRepository.save(mockCarList.get(0))).thenReturn(mockCarList.get(0));
+        when(mockRepository.save(mockCarList.get(1))).thenReturn(mockCarList.get(1));
+//        when(mockRepository.saveAll(mockCarList)).thenReturn(mockCarList);
+
         List<Car> carsFromDB = carService.saveNewCars(mockCarList);
 
         assertEquals(mockCarList,carsFromDB);
-        verify(mockRepository).saveAll(anyList());
+        verify(mockRepository).save(mockCarList.get(0));
+        verify(mockRepository).save(mockCarList.get(1));
     }
 
     @Test

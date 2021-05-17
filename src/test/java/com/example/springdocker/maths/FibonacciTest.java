@@ -57,7 +57,7 @@ class FibonacciTest {
     @Disabled
     public void myDisabledTest(){
         // will fail if run
-        assertEquals(2,f.checkFib(4));
+        fail();
     }
 
 }

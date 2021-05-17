@@ -38,6 +38,7 @@ public class CarService {
             carsFromDB.add(saveNewCar(car));
         }
         return carsFromDB;
+//        return repository.saveAll(cars);
     }
 
     public List<String> getConvertibleCars() {
