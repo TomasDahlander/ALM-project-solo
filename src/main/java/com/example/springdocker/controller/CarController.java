@@ -36,4 +36,9 @@ public class CarController {
     public List<Car> getCarsWithHigherHp(@PathVariable int hp){
         return service.getCarsWithHigherHpThen(hp);
     }
+
+    @DeleteMapping("/cars/delete")
+    public String deleteAllCars(){
+        return service.deleteAllCars();
+    }
 }

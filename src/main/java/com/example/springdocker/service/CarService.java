@@ -38,7 +38,6 @@ public class CarService {
             carsFromDB.add(saveNewCar(car));
         }
         return carsFromDB;
-//        return repository.saveAll(cars);
     }
 
     public List<String> getConvertibleCars() {
@@ -55,7 +54,16 @@ public class CarService {
         // Hämtar alla cars
         List<Car> cars = repository.findAll();
 
-        // Returnerar endast Cars med lika eller högre hp.
+        // Returnerar endast Cars med lika eller högre hp (horsepower).
         return cars.stream().filter(c -> c.getHorsePower() >= hp).collect(Collectors.toList());
+    }
+
+    public String deleteAllCars(){
+        List<Car> list = repository.findAll();
+        String message = "All cars below removed from database:\n";
+        if(list.size() == 0) message = "No cars found in database.";
+        else for(Car car : list) message += car.getModel() + " med reg nr " + car.getRegNr() +"\n";
+        repository.deleteAll();
+        return message;
     }
 }

@@ -107,4 +107,23 @@ class CarServiceTest {
 
         assertEquals(expected,actual);
     }
+
+    @Test
+    public void deleteAllCarsTest() {
+        List<Car> mockCarList = Arrays.asList(
+                new Car("1","ABC-123","Saab 93",150,150000,false),
+                new Car("2","DEF-456","Porsche 911",250,300000,true)
+        );
+
+        when(mockRepository.findAll()).thenReturn(mockCarList);
+
+        String expected = "All cars below removed from database:\n";
+        expected += mockCarList.get(0).getModel() + " med reg nr " + mockCarList.get(0).getRegNr() +"\n";
+        expected += mockCarList.get(1).getModel() + " med reg nr " + mockCarList.get(1).getRegNr() +"\n";
+
+        String actual = carService.deleteAllCars();
+
+        assertEquals(expected,actual);
+        verify(mockRepository).deleteAll();
+    }
 }
