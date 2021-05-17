@@ -57,11 +57,11 @@ class CarServiceTest {
     public void saveNewCarTest() {
         Car mockCar = new Car("ABC-123","Saab 93",150,150000,false);
 
-        when(mockRepository.save(any())).thenReturn(mockCar);
+        when(mockRepository.save(mockCar)).thenReturn(mockCar);
         Car carFromDB = carService.saveNewCar(mockCar);
 
         assertEquals(mockCar,carFromDB);
-        verify(mockRepository).save(any());
+        verify(mockRepository).save(mockCar);
     }
 
     @Test
@@ -86,10 +86,11 @@ class CarServiceTest {
     public void getConvertibleCarsTest() {
         List<Car> expected = Arrays.asList(new Car("2","DEF-456","Porsche 911",250,300000,true));
 
-        when(mockRepository.findCarByConvertible(anyBoolean())).thenReturn(expected);
+        when(mockRepository.findCarByConvertible(true)).thenReturn(expected);
         List<String> actual = carService.getConvertibleCars();
 
         assertEquals(expected.get(0).getModel(),actual.get(0));
+        verify(mockRepository).findCarByConvertible(true);
     }
 
     @Test
