@@ -12,6 +12,11 @@ import java.util.List;
 public class CarController {
     private final CarService service;
 
+    @GetMapping("/")
+    public String welcomeMessage(){
+        return "Welcome to this car controller!";
+    }
+
     @GetMapping("/cars")
     public List<Car> getCars() {
         return service.getCars();
