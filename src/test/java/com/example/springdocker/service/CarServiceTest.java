@@ -88,7 +88,7 @@ class CarServiceTest {
         when(mockRepository.findCarByConvertible(true)).thenReturn(expected);
         List<String> actual = carService.getConvertibleCars();
 
-        assertEquals(expected.get(0).getModel() + " " + expected.get(0).getRegNr(),actual.get(0));
+        assertEquals("Porsche 911 - DEF-456",actual.get(0));
         verify(mockRepository).findCarByConvertible(true);
     }
 

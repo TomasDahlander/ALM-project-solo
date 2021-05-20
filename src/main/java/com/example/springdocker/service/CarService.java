@@ -46,7 +46,7 @@ public class CarService {
 
         // Returnerar endast Car modellerna i en lista
         return cabbedCars.stream()
-                .map(car -> car.getModel() + " " + car.getRegNr())
+                .map(car -> car.getModel() + " - " + car.getRegNr())
                 .collect(Collectors.toList());
     }
 
