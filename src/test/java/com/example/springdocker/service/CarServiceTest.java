@@ -73,7 +73,6 @@ class CarServiceTest {
 
         when(mockRepository.save(mockCarList.get(0))).thenReturn(mockCarList.get(0));
         when(mockRepository.save(mockCarList.get(1))).thenReturn(mockCarList.get(1));
-//        when(mockRepository.saveAll(mockCarList)).thenReturn(mockCarList);
 
         List<Car> carsFromDB = carService.saveNewCars(mockCarList);
 
@@ -89,7 +88,7 @@ class CarServiceTest {
         when(mockRepository.findCarByConvertible(true)).thenReturn(expected);
         List<String> actual = carService.getConvertibleCars();
 
-        assertEquals(expected.get(0).getModel(),actual.get(0));
+        assertEquals(expected.get(0).getModel() + " " + expected.get(0).getRegNr(),actual.get(0));
         verify(mockRepository).findCarByConvertible(true);
     }
 

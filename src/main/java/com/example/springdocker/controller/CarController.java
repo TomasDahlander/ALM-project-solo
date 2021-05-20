@@ -14,7 +14,10 @@ public class CarController {
 
     @GetMapping("/")
     public String welcomeMessage(){
-        return "Welcome to this car controller!";
+        return "Welcome to this car controller!\n" +
+                "/cars = get all cars\n" +
+                "/cars/cabs = get all convertible cars\n" +
+                "/cars/power/{number of horsepower} = get cars that have at least that many horsepower";
     }
 
     @GetMapping("/cars")
