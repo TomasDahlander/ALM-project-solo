@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +23,7 @@ import static org.mockito.Mockito.*;
  * Project: spring-docker-demo <br>
  */
 //@RunWith(MockitoRunner.class) // JUnit 4
+//@DataMongoTest
 @ExtendWith(MockitoExtension.class) // JUnit 5
 class FoodServiceTest {
 

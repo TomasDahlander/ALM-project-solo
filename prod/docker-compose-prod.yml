@@ -18,11 +18,11 @@ services:
   java-app:
     image: cars_image
     ports:
-      - 8085:8080
+      - 8083:8080
     environment:
       SPRING_PROFILES_ACTIVE: prod
       DB_HOST: mongo
-      DB-PORT: 27017
+      DB_PORT: 27017
       DB_NAME: cars-prod-db
     depends_on:
       - mongo

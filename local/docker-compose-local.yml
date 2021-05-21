@@ -3,14 +3,15 @@ version: '3.1'
 services:
   mongo:
     image: mongo
+#    command: mongod --port 27018
     ports:
-      - 27017:27017
+      - 27018:27017
     volumes:
       - data/db
 
   mongo-express:
     image: mongo-express
     ports:
-      - 8081:8081
+      - 8082:8081
     depends_on:
       - mongo
