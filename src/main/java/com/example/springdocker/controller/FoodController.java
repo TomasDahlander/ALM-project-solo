@@ -21,12 +21,17 @@ public class FoodController {
     }
 
     @PostMapping("/foods")
-    public void saveNewFood(@RequestBody Food food) {
-        service.saveNewFood(food);
+    public Food saveNewFood(@RequestBody Food food) {
+        return service.saveNewFood(food);
+    }
+
+    @PostMapping("/foods/list")
+    public List<Food> saveNewFoods(@RequestBody List<Food> foods){
+        return service.saveNewFoods(foods);
     }
 
     @GetMapping("/foods/cookable")
-    public List<String> getCookableoods() {
+    public List<String> getCookableFoods() {
         return service.getCookableFoods();
     }
 }

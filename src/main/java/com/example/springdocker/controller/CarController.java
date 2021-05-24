@@ -12,6 +12,14 @@ import java.util.List;
 public class CarController {
     private final CarService service;
 
+    @GetMapping("/")
+    public String welcomeMessage(){
+        return "Welcome to this car controller!<br>" +
+                "/cars = get all cars<br>" +
+                "/cars/cabs = get all convertible cars<br>" +
+                "/cars/power/{number of horsepower} = get cars that have at least that many horsepower";
+    }
+
     @GetMapping("/cars")
     public List<Car> getCars() {
         return service.getCars();
@@ -35,5 +43,10 @@ public class CarController {
     @GetMapping("/cars/power/{hp}")
     public List<Car> getCarsWithHigherHp(@PathVariable int hp){
         return service.getCarsWithHigherHpThen(hp);
+    }
+
+    @DeleteMapping("/cars/delete")
+    public String deleteAllCars(){
+        return service.deleteAllCars();
     }
 }

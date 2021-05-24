@@ -17,8 +17,12 @@ public class FoodService {
         return repository.findAll();
     }
 
-    public void saveNewFood(Food food) {
-        repository.save(food);
+    public Food saveNewFood(Food food) {
+        return repository.save(food);
+    }
+
+    public List<Food> saveNewFoods(List<Food> foods) {
+        return repository.saveAll(foods);
     }
 
     public List<String> getCookableFoods() {
@@ -30,4 +34,6 @@ public class FoodService {
                 .map(food -> food.getName())
                 .collect(Collectors.toList());
     }
+
+
 }

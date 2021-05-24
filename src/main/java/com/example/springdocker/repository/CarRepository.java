@@ -10,4 +10,6 @@ import java.util.List;
 public interface CarRepository extends MongoRepository<Car, String> {
 
     List<Car> findCarByConvertible(boolean isConvertible);
+
+    Car findCarByRegNr(String regNr);
 }
