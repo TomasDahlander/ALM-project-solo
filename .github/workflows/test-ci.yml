@@ -2,6 +2,7 @@ name: Test CI
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   build-and-test:
@@ -27,11 +28,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: key
+      - name: check key connection
         run: echo ${{ secrets.KEY }}
 
-      - name: calculate 2+2
+      - name: calculate numbers
         run: set /a 2+2
 
-      - name: calculate key + 2
+      - name: calculate number with key
         run: set /a ${{ secrets.KEY }}+2
