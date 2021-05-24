@@ -1,38 +1,29 @@
-name: Test CI
+name: Tests CI
 
 on:
   workflow_dispatch:
   push:
 
 jobs:
-  build-and-test:
+  run-tests:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout our Code
         uses: actions/checkout@v2
 
-      - name: Get and setup Java
+      - name: Get and setup Java JDK 11 with adopt
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
           java-version: '11'
 
-      - name: Check Java Version
-        run: java -version
-
       - name: Run Tests
         run: mvn test
 
   key-test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: check key connection
         run: echo ${{ secrets.TEST }}
-
-      - name: calculate numbers
-        run: set /a 2+2
-
-      - name: calculate number with key
-        run: set /a ${{ secrets.TEST }}+2
