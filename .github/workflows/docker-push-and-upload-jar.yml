@@ -38,5 +38,3 @@ jobs:
         with:
           name: cars-app.jar
           path: target/*.jar
-
-
