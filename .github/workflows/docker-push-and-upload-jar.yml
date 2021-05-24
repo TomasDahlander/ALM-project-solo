@@ -1,4 +1,4 @@
-name: Docker Push Image
+name: Build And Push Docker Image
 
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
       - name: Build Jar file
         run: mvn clean install
 
-      - name: Docker login
+      - name: DockerHub login
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -31,7 +31,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/car-app-db:${{ github.run_number }}
+          tags:
+            ${{ secrets.DOCKERHUB_USERNAME }}/car-app:${{ github.run_number }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/car-app:latest
 
       - name: Upload Jar File
         uses: actions/upload-artifact@v2
