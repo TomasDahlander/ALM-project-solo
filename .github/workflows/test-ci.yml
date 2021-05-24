@@ -29,10 +29,10 @@ jobs:
 
     steps:
       - name: check key connection
-        run: echo ${{ secrets.KEY }}
+        run: echo ${{ secrets.TEST }}
 
       - name: calculate numbers
         run: set /a 2+2
 
       - name: calculate number with key
-        run: set /a ${{ secrets.KEY }}+2
+        run: set /a ${{ secrets.TEST }}+2
