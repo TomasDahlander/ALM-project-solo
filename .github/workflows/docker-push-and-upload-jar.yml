@@ -31,7 +31,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/car-app:${{ github.run_number }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/car-app:${{ github.run_number }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/car-app:latest
 
       - name: Upload Jar File
         uses: actions/upload-artifact@v2
