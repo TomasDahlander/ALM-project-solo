@@ -16,7 +16,7 @@ services:
       - mongo
 
   java-app:
-    image: cars_image
+    image: dalle90/car-app:latest
     ports:
       - 8083:8080
     environment:
