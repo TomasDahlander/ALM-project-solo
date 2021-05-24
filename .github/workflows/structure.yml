@@ -1,0 +1,18 @@
+#name: Updater
+#
+#on:
+#  push:
+#  pull_request:
+#    branches:
+#      - dev
+#      - master
+#  workflow_dispatch:
+#    # manuell trigger
+#
+#jobs:
+#  my_first_job:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+##      - name:
+##        run:
